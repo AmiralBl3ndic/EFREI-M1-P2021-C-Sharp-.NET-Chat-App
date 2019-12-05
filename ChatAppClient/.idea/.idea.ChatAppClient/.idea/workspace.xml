@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="371f43df-3232-4c37-8056-ae821dbeeb30" name="Default Changelist" comment="" />
+    <list default="true" id="371f43df-3232-4c37-8056-ae821dbeeb30" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ChatAppClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChatAppClient/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatAppClient.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ChatAppClient.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatAppClient.sln" beforeDir="false" afterPath="$PROJECT_DIR$/ChatAppClient.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,12 +18,22 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Communication/Message.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Program.cs" />
+        <option value="$PROJECT_DIR$/../Communication/Message.cs" />
+      </list>
+    </option>
   </component>
   <component name="ProjectId" id="1UZ6uJrtzNpDd3C0cUsLx4HebfX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ChatAppServer/ChatAppServer.csproj" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -60,6 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575551991920</updated>
       <workItem from="1575551993721" duration="4000" />
+      <workItem from="1575557055954" duration="248000" />
     </task>
     <servers />
   </component>
@@ -68,7 +84,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
