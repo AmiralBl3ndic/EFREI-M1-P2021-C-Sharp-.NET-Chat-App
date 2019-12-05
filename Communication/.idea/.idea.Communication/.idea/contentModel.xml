@@ -7,6 +7,7 @@
       <e p="bin" t="ExcludeRecursive" />
       <e p="Communication.csproj" t="IncludeRecursive" />
       <e p="Communication.sln" t="IncludeFlat" />
+      <e p="Message.cs" t="Include" />
       <e p="Net.cs" t="Include" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
