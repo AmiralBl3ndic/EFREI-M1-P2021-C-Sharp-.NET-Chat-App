@@ -9,4 +9,9 @@
       <ProjectReference Include="..\Communication\Communication.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="BCrypt.Net-Next" Version="3.2.1" />
+      <PackageReference Include="MongoDB.Driver" Version="2.9.3" />
+    </ItemGroup>
+
 </Project>

@@ -38,6 +38,14 @@ namespace Communication
 			set => _topic = value;
 		}
 
+
+		public Message(string username, string topic, string content)
+		{
+			Username = username;
+			Topic = topic;
+			Content = content;
+		}
+
 		public override string ToString()
 		{
 			return $"[{Topic}] @{Username}: {Content}";
@@ -46,7 +54,7 @@ namespace Communication
 	
 	
 	[Serializable]
-	public class AuthenticatedMessage
+	public class AuthenticatedMessage : Message
 	{
 		private string _password;
 
@@ -59,6 +67,12 @@ namespace Communication
 		{
 			get => _password;
 			set => _password = value;
+		}
+
+
+		public AuthenticatedMessage(string username, string password, string topic, string content) : base(username, topic, content)
+		{
+			Password = password;
 		}
 	}
 }

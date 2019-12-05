@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Net.Sockets;
-using Communication;
 
 namespace ChatAppClient
 {
-	class ChatAppClient
+	class Program
 	{
 		static void Main(string[] args)
 		{
-			TcpClient tcpClient = new TcpClient("127.0.0.1", 4321);
+			Console.WriteLine("Welcome to the ChatApp client!\n");
+			
+			Console.WriteLine("Type \"help\" to see all the available commands");
+			
+			Client client = new Client("camboy", "abcdefgh", "127.0.0.1", 4321);
+			client.Start();
 		}
 	}
 }
