@@ -75,5 +75,10 @@ namespace Communication
 
 			return command;
 		}
+		
+		public override string ToString()
+		{
+			return $"{Name} {(Arguments.Length > 0 ? string.Join(" ", Arguments): "")}";
+		}
 	}
 }

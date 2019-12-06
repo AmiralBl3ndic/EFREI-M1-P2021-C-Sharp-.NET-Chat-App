@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Threading;
 using ChatAppServer.Models;
+using Communication;
 
 namespace ChatAppServer
 {
@@ -41,8 +42,12 @@ namespace ChatAppServer
 			// Loop forever (do not lose connection with client)
 			while (true)
 			{
-				Console.WriteLine($"Inside ClientHandler thread {_tcpClient}");
-				Thread.Sleep(3000);  // TODO: implement logic here
+				var command = Net.ReceiveCommand(_tcpClient.GetStream());
+				Console.WriteLine($"Received command from @{_tcpClient}: {command}");
+				
+				Thread.Sleep(2000);
+				
+				// TODO: process command
 			}
 		}
 	}
