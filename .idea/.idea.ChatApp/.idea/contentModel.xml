@@ -37,6 +37,7 @@
           <e p="AuthenticationService.cs" t="Include" />
           <e p="UserService.cs" t="Include" />
         </e>
+        <e p="Settings.cs" t="Include" />
       </e>
       <e p="Communication" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
