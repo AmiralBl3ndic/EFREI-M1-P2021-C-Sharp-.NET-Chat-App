@@ -23,9 +23,14 @@ namespace Communication
 			{"logout", 0}         // logout
 		};
 
+		public static readonly string ErrorNotEnoughArguments = "Error: not enough arguments";
+		public static readonly string ErrorCommandNotFound = "Error: command not found";
+
 		public string Name { get; set; }
 		
 		public string[] Arguments { get; set; }
+		
+		public string Error { get; set; }
 
 
 		public static Command Prepare(string input)
@@ -34,14 +39,26 @@ namespace Communication
 
 			string[] parts = input.Split(" ");  // Split input by spaces
 
+			var command = new Command {Error = null, Name = null, Arguments = null};
 
-			if (!ValidCommands.Keys.Contains(parts[0])) return null; // Check if command is known
-
-			if (parts.Length - 1 < ValidCommands[parts[0]]) return null; // Check if enough arguments were provided
+			// Check if command exists
+			if (!ValidCommands.Keys.Contains(parts[0]))
+			{
+				command.Error = ErrorCommandNotFound;
+				return command; // Check if command is known
+			}
+			
+			// Check if enough arguments were provided
+			if (parts.Length - 1 < ValidCommands[parts[0]])
+			{
+				command.Error = ErrorNotEnoughArguments;
+				return command;
+			}
 			
 			// Now, we just have to build the command, the command is valid and has enough arguments 
 
-			var command = new Command {Name = parts[0], Arguments = new string[ValidCommands[parts[0]]]};
+			command.Name = parts[0];
+			command.Arguments = new string[ValidCommands[parts[0]]];
 
 			if (ValidCommands[command.Name] == 0) return command;
 			
