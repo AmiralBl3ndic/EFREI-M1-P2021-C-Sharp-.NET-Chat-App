@@ -39,14 +39,18 @@ namespace ChatAppServer
 			// Create a TCP listener on specified port and start listening
 			TcpListener listener = new TcpListener(new IPAddress(new byte[] {127, 0, 0, 1}), _port);
 			listener.Start();
+			
+			Console.WriteLine($"Server started on port {_port}");
 
 			// Main thread loop, always accept new clients
 			while (true)
 			{
+				// Wait for a new client connection
 				TcpClient client = listener.AcceptTcpClient();
+				
 				Console.WriteLine($"New client connection established: @{client}");
 				
-				// Start a new Thread to handle interactions with the client
+				// Start a new Thread to handle interactions with the client without blocking the main thread
 				new Thread(new ClientHandler(client).Payload).Start();
 			}
 		}
