@@ -34,7 +34,8 @@ namespace ChatAppServer
 			// Loop forever (do not lose connection with client)
 			while (true)
 			{
-				Thread.Sleep(10000);  // TODO: implement logic here
+				Console.WriteLine($"Inside ClientHandler thread {_tcpClient}");
+				Thread.Sleep(3000);  // TODO: implement logic here
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace ChatAppServer
 {
@@ -44,6 +45,9 @@ namespace ChatAppServer
 			{
 				TcpClient client = listener.AcceptTcpClient();
 				Console.WriteLine($"New client connection established: @{client}");
+				
+				// Start a new Thread to handle interactions with the client
+				new Thread(new ClientHandler(client).Payload).Start();
 			}
 		}
 	}
