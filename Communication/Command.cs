@@ -30,27 +30,20 @@ namespace Communication
 
 		public static Command Prepare(string input)
 		{
-			if (input.Length == 0)  // No need to perform preparation if no input 
-			{
-				return null;
-			}
-			
+			if (input.Length == 0) return null; // No need to perform preparation if no input 
+
 			string[] parts = input.Split(" ");  // Split input by spaces
 
-			
-			if (!ValidCommands.Keys.Contains(parts[0]))  // Check if command is known
-			{
-				return null;
-			}
 
-			if (parts.Length - 1 < ValidCommands[parts[0]])  // Check if enough arguments were provided
-			{
-				return null;
-			}
+			if (!ValidCommands.Keys.Contains(parts[0])) return null; // Check if command is known
+
+			if (parts.Length - 1 < ValidCommands[parts[0]]) return null; // Check if enough arguments were provided
 			
 			// Now, we just have to build the command, the command is valid and has enough arguments 
 
 			var command = new Command {Name = parts[0], Arguments = new string[ValidCommands[parts[0]]]};
+
+			if (ValidCommands[command.Name] == 0) return command;
 			
 			// Get all needed arguments
 			var i = 1;
@@ -58,11 +51,11 @@ namespace Communication
 			{
 				command.Arguments[i - 1] = parts[i];
 			}
-			
+  
 			// Merge remaining parts as the last argument
-			var remainingParts = new ArraySegment<string>(parts, i, parts.Length - 1 - i);
-			command.Arguments[i] = string.Join(" ", remainingParts);
-			
+			var remainingParts = new ArraySegment<string>(parts, i, parts.Length - i);
+			command.Arguments[i-1] = string.Join(" ", remainingParts);
+
 			return command;
 		}
 	}
