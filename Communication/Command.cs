@@ -79,7 +79,14 @@ namespace Communication
 		
 		public override string ToString()
 		{
-			return $"{Name} {(Arguments.Length > 0 ? string.Join(" ", Arguments): "")}";
+			if (Error == null)
+			{
+				return $"{Name} {(Arguments.Length > 0 ? string.Join(" ", Arguments): "")}";	
+			}
+			else
+			{
+				return $"{Error}";
+			}
 		}
 	}
 }
