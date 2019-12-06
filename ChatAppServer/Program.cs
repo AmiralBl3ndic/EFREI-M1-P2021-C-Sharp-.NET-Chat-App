@@ -9,11 +9,22 @@ namespace ChatAppServer
 	{
 		static void Main(string[] args)
 		{
+			// Initialize MongoDB database
+			IMongoClient mongoDbClient = new MongoClient(Settings.MongoConnectionString);
+			var db = mongoDbClient.GetDatabase(Settings.MongoDatabaseName);
 			
+			// Inject dependencies to services
+			UserService.UsersCollection = db.GetCollection<User>(Settings.MongoUsersCollectionName);
+			
+			// Instantiate and start server
+			var server = new Server(4321);
+			server.Start();
 		}
 
-
-		public static void Demo()
+		/// <summary>
+		/// Simple testing code to be removed later on
+		/// </summary>
+		static void Demo()
 		{
 			var mongoClient = new MongoClient(Settings.MongoConnectionString);
       IMongoDatabase db = mongoClient.GetDatabase(Settings.MongoDatabaseName);
