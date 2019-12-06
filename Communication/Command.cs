@@ -38,6 +38,7 @@ namespace Communication
 			if (input.Length == 0) return null; // No need to perform preparation if no input 
 
 			string[] parts = input.Split(" ");  // Split input by spaces
+			parts[0] = parts[0].ToLower();
 
 			var command = new Command {Error = null, Name = null, Arguments = null};
 
