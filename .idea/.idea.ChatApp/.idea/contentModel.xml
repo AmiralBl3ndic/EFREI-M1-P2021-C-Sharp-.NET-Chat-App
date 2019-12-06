@@ -32,6 +32,7 @@
           </e>
         </e>
         <e p="Program.cs" t="Include" />
+        <e p="Server.cs" t="Include" />
         <e p="Services" t="Include">
           <e p="AuthenticationService.cs" t="Include" />
           <e p="UserService.cs" t="Include" />
