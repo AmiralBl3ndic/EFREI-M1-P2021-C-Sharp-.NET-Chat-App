@@ -1,7 +1,6 @@
 ﻿using System;
 using ChatAppServer.Models;
 using ChatAppServer.Services;
-using Communication;
 using MongoDB.Driver;
 
 namespace ChatAppServer
@@ -10,22 +9,6 @@ namespace ChatAppServer
 	{
 		static void Main(string[] args)
 		{
-			while (true)
-			{
-				Command command = null;
-				
-				Console.Write("$ ");
-				string input = Console.ReadLine();
-
-				command = Command.Prepare(input);
-
-				if (command.Error != null)
-				{
-					Console.WriteLine(command.Error);
-				}
-			}
-			
-			
 			// Initialize MongoDB database
 			IMongoClient mongoDbClient = new MongoClient(Settings.MongoConnectionString);
 			var db = mongoDbClient.GetDatabase(Settings.MongoDatabaseName);
