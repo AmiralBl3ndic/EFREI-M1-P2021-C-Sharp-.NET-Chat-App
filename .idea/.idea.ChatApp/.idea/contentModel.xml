@@ -42,6 +42,7 @@
       </e>
       <e p="Communication" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Command.cs" t="Include" />
         <e p="Communication.csproj" t="IncludeRecursive" />
         <e p="Message.cs" t="Include" />
         <e p="Net.cs" t="Include" />
