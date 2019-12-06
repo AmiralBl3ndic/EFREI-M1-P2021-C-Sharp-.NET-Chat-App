@@ -10,7 +10,7 @@ namespace ChatAppClient
 			
 			Console.WriteLine("Type \"help\" to see all the available commands");
 			
-			Client client = new Client("camboy", "abcdefgh", "127.0.0.1", 4321);
+			Client client = new Client("127.0.0.1", 4321);
 			client.Start();
 		}
 	}
