@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Communication
 {
+	[Serializable]
 	public class Command
 	{
 		/// <summary>
@@ -23,14 +23,14 @@ namespace Communication
 			{"logout", 0}         // logout
 		};
 
-		public static readonly string ErrorNotEnoughArguments = "Error: not enough arguments";
-		public static readonly string ErrorCommandNotFound = "Error: command not found";
+		private const string ErrorNotEnoughArguments = "Error: not enough arguments";
+		private const string ErrorCommandNotFound = "Error: command not found";
 
-		public string Name { get; set; }
+		public string Name { get; private set; }
 		
-		public string[] Arguments { get; set; }
+		public string[] Arguments { get; private set; }
 		
-		public string Error { get; set; }
+		public string Error { get; private set; }
 
 
 		public static Command Prepare(string input)
@@ -42,7 +42,7 @@ namespace Communication
 			var command = new Command {Error = null, Name = null, Arguments = null};
 
 			// Check if command exists
-			if (!ValidCommands.Keys.Contains(parts[0]))
+			if (!ValidCommands.ContainsKey(parts[0]))
 			{
 				command.Error = ErrorCommandNotFound;
 				return command; // Check if command is known

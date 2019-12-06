@@ -19,9 +19,9 @@ namespace ChatAppServer
 
 				command = Command.Prepare(input);
 
-				if (command == null)
+				if (command.Error != null)
 				{
-					Console.WriteLine("Error with command");
+					Console.WriteLine(command.Error);
 				}
 			}
 			
