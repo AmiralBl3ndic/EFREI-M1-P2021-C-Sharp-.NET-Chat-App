@@ -27,26 +27,9 @@ namespace Communication
 			return (Message) binaryFormatter.Deserialize(stream);
 		}
 
-		/// <summary>
-		/// Send a message with authentication data (user password) by serializing it to binary before doing so
-		/// </summary>
-		/// <param name="stream">Stream to serialize the message on</param>
-		/// <param name="message">Message to send</param>
-		public static void SendAuthenticatedMessage(Stream stream, AuthenticatedMessage message)
+		public static void SendCommand(Stream stream, Command command)
 		{
-			BinaryFormatter binaryFormatter = new BinaryFormatter();
-			binaryFormatter.Serialize(stream, message);
-		}
-
-		/// <summary>
-		/// Receive an authenticated message on a stream by deserializing its binary content
-		/// </summary>
-		/// <param name="stream">Stream to deserialize messages from</param>
-		/// <returns>Deserialized AuthenticatedMessage</returns>
-		public static AuthenticatedMessage ReceiveAuthenticatedMessage(Stream stream)
-		{
-			BinaryFormatter binaryFormatter = new BinaryFormatter();
-			return (AuthenticatedMessage) binaryFormatter.Deserialize(stream);
+			
 		}
 	}
 }
