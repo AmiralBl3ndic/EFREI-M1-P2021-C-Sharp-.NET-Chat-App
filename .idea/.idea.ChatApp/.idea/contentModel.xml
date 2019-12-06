@@ -21,6 +21,7 @@
       <e p="ChatAppServer" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="ChatAppServer.csproj" t="IncludeRecursive" />
+        <e p="ClientHandler.cs" t="Include" />
         <e p="Models" t="Include">
           <e p="User.cs" t="Include" />
         </e>
