@@ -12,7 +12,7 @@ namespace Communication
 		/// <param name="message">Message to send</param>
 		public static void SendMessage(Stream stream, Message message)
 		{
-			BinaryFormatter binaryFormatter = new BinaryFormatter();
+			var binaryFormatter = new BinaryFormatter();
 			binaryFormatter.Serialize(stream, message);
 		}
 
@@ -23,13 +23,30 @@ namespace Communication
 		/// <returns>Deserialized message</returns>
 		public static Message ReceiveMessage(Stream stream)
 		{
-			BinaryFormatter binaryFormatter = new BinaryFormatter();
+			var binaryFormatter = new BinaryFormatter();
 			return (Message) binaryFormatter.Deserialize(stream);
 		}
 
+		/// <summary>
+		/// Send a command on a stream 
+		/// </summary>
+		/// <param name="stream">Stream to send the command on</param>
+		/// <param name="command">Command to send</param>
 		public static void SendCommand(Stream stream, Command command)
 		{
-			
+			var binaryFormatter = new BinaryFormatter();
+			binaryFormatter.Serialize(stream, command);
+		}
+
+		/// <summary>
+		/// Receive a command on a stream
+		/// </summary>
+		/// <param name="stream">Stream to receive commands on</param>
+		/// <returns>Received command</returns>
+		public static Command ReceiveCommand(Stream stream)
+		{
+			var binaryFormatter = new BinaryFormatter();
+			return (Command) binaryFormatter.Deserialize(stream);
 		}
 	}
 }
