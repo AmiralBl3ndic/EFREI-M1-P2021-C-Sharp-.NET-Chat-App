@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Threading;
+using ChatAppServer.Models;
 
 namespace ChatAppServer
 {
@@ -13,6 +14,12 @@ namespace ChatAppServer
 		/// TCP client the client uses to communicate
 		/// </summary>
 		private TcpClient _tcpClient;
+
+		/// <summary>
+		/// User object representing the User database record of the current client 
+		/// </summary>
+		private User _user = null;
+		
 
 		/// <summary>
 		/// Create an instance of ClientHandler
