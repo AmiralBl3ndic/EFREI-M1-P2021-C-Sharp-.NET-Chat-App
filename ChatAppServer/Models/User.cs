@@ -13,6 +13,9 @@ namespace ChatAppServer.Models
 		
 		[BsonElement("Password")]
 		public string Password { get; set; }
+		
+		[BsonElement("Topics")]
+		public string[] Topics { get; set; }
 
 		public void HashPassword()
 		{
@@ -21,7 +24,8 @@ namespace ChatAppServer.Models
 		
 		public void HashPassword(string passwordToHash)
 		{
-			Password = BCrypt.Net.BCrypt.HashPassword(passwordToHash, 12);
+			Password = passwordToHash;
+			HashPassword();
 		}
 
 		public override string ToString()
