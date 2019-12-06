@@ -9,48 +9,53 @@ namespace ChatAppServer
 	{
 		static void Main(string[] args)
 		{
+			
+		}
+
+
+		public static void Demo()
+		{
 			var mongoClient = new MongoClient(Settings.MongoConnectionString);
-			IMongoDatabase db = mongoClient.GetDatabase(Settings.MongoDatabaseName);
+      IMongoDatabase db = mongoClient.GetDatabase(Settings.MongoDatabaseName);
+      
+      UserService.UsersCollection = db.GetCollection<User>(Settings.MongoUsersCollectionName);
+      
+      User u1 = new User{Username = "admin", Password = "password"};
+      User u2 = new User{Username = "testUser", Password = "test1234"};
+      User u3 = new User{Username = "johndoe", Password = "mydogsname"};
+      
+      u1.HashPassword();
+      u2.HashPassword();
+      u3.HashPassword();
+      
+      UserService.Remove(u1);
+      UserService.Remove(u2);
+      UserService.Remove(u3);
 
-			
-			UserService.UsersCollection = db.GetCollection<User>(Settings.MongoUsersCollectionName);
-			
-			User u1 = new User{Username = "admin", Password = "password"};
-			User u2 = new User{Username = "testUser", Password = "test1234"};
-			User u3 = new User{Username = "johndoe", Password = "mydogsname"};
-			
-			u1.HashPassword();
-			u2.HashPassword();
-			u3.HashPassword();
-			
-			UserService.Remove(u1);
-			UserService.Remove(u2);
-			UserService.Remove(u3);
+      UserService.Create(u1);
+      UserService.Create(u2);
+      UserService.Create(u3);
 
-			UserService.Create(u1);
-			UserService.Create(u2);
-			UserService.Create(u3);
+      UserService.GetAll().ForEach(Console.WriteLine);
 
-			UserService.GetAll().ForEach(Console.WriteLine);
+      while (true)
+      {
+      	Console.Write("Username: ");
+      	string username = Console.ReadLine();
+      	Console.Write("Password: ");
+      	string password = Console.ReadLine();
 
-			while (true)
-			{
-				Console.Write("Username: ");
-				string username = Console.ReadLine();
-				Console.Write("Password: ");
-				string password = Console.ReadLine();
+      	User user = AuthenticationService.AuthenticateUser(username, password);
 
-				User user = AuthenticationService.AuthenticateUser(username, password);
-
-				if (user == null)
-				{
-					Console.WriteLine("Wrong username/password");
-				}
-				else
-				{
-					Console.WriteLine("Authentication succeeded!");
-				}
-			}
+      	if (user == null)
+      	{
+      		Console.WriteLine("Wrong username/password");
+      	}
+      	else
+      	{
+      		Console.WriteLine("Authentication succeeded!");
+      	}
+      }
 		}
 	}
 }
