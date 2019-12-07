@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
+using Communication;
 
 namespace GUI_Client
 {
@@ -21,14 +22,21 @@ namespace GUI_Client
 			// Listen to messages from server
 			while (true)
 			{
-				// Sample message
-				Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-				{
-					var sampleMessage = new TextBlock() {Text = "I am a sample message"};
-					MessagesPanel.Children.Add(sampleMessage);
-				}));
+				var message = Net.ReceiveMessage(_tcpClient.GetStream());
 				
-				Thread.Sleep(1500);
+				// Dispatcher needed because not in UI thread and trying to access UI components
+				Dispatcher?.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+				{
+					// Styling the message block before adding it to the list of messages
+					var messageBlock = new TextBlock
+					{
+						Text = message.ToString(),
+						Foreground = message.Type == MessageType.Error ? Brushes.Red : Brushes.Black,
+						FontWeight = message.Type == MessageType.Error ? FontWeights.Bold : FontWeights.Regular
+					};
+					
+					MessagesPanel.Children.Add(messageBlock);
+				}));
 			}
 		}
 	}
