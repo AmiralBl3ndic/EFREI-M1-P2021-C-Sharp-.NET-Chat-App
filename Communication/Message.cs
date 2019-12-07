@@ -15,6 +15,8 @@ namespace Communication
 		/// </summary>
 		public string Content { get; set; }
 		
+		public Message() {}
+		
 		public Message(string content)
 		{
 			Content = content;
@@ -22,6 +24,11 @@ namespace Communication
 
 		public override string ToString()
 		{
+			if (Type == MessageType.Error)
+			{
+				return $"Error: {Content}";
+			}
+
 			return Content;
 		}
 	}
