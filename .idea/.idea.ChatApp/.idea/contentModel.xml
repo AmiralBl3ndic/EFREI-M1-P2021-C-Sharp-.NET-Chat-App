@@ -45,6 +45,7 @@
         <e p="Command.cs" t="Include" />
         <e p="Communication.csproj" t="IncludeRecursive" />
         <e p="Message.cs" t="Include" />
+        <e p="MessageType.cs" t="Include" />
         <e p="Net.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

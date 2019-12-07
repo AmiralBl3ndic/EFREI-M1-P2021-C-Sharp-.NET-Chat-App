@@ -47,7 +47,7 @@ namespace ChatAppServer
 					var command = Net.ReceiveCommand(_tcpClient.GetStream());
 					Console.WriteLine($"Received command from client: {(command != null ? command.ToString() : "")}");
 				}
-				catch (IOException)
+				catch (IOException)  // Handle "losign" clients
 				{
 					Console.WriteLine("Client disconnected");
 					return;	
