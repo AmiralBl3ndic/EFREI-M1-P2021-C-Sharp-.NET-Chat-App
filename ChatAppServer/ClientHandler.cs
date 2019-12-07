@@ -9,7 +9,7 @@ namespace ChatAppServer
 	/// <summary>
 	/// Class handling logic for interacting with a client, meant to be instantiated and execute execute Payload as a Thread
 	/// </summary>
-	public class ClientHandler
+	public partial class ClientHandler
 	{
 		/// <summary>
 		/// TCP client the client uses to communicate
@@ -56,14 +56,19 @@ namespace ChatAppServer
 					switch (command.Name)
 					{
 						case "login":
+							HandleLoginCommand(command, response);
+							break;
+						
+						case "register":
 							break;
 						
 						default:
 							response.Type = MessageType.Error;
 							response.Content = "Unknown operation";
-							Net.SendMessage(_tcpClient.GetStream(), response);
 							break;
 					}
+					
+					Net.SendMessage(_tcpClient.GetStream(), response);
 				}
 				catch (IOException)  // Handle "losing" clients
 				{

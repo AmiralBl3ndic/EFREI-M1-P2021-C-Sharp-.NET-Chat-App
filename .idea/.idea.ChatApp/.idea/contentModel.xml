@@ -19,6 +19,7 @@
         <e p="Program.cs" t="Include" />
       </e>
       <e p="ChatAppServer" t="IncludeRecursive">
+        <e p="AuthenticationCommandsHandlers.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="ChatAppServer.csproj" t="IncludeRecursive" />
         <e p="ClientHandler.cs" t="Include" />
