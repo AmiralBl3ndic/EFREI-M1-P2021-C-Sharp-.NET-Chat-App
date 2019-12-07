@@ -37,8 +37,6 @@ namespace ChatAppServer
 		/// </summary>
 		public void Payload()
 		{
-			Console.WriteLine("ClientHandler thread started");
-
 			// Loop forever (do not lose connection with client)
 			while (true)
 			{
@@ -47,9 +45,7 @@ namespace ChatAppServer
 					// Wait to receive command from client
 					var command = Net.ReceiveCommand(_tcpClient.GetStream());
 					if (command == null) continue;  // Perform only if command is not null
-					
-					Console.WriteLine($"Received command from client: {command}");
-					
+
 					// Initialize message
 					var response = new Message();
 
@@ -64,6 +60,7 @@ namespace ChatAppServer
 							break;
 						
 						default:
+							Console.WriteLine($"Unable to handle command: {command}");
 							response.Type = MessageType.Error;
 							response.Content = "Unknown operation";
 							break;
