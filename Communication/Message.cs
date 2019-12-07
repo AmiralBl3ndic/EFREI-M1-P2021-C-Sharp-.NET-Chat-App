@@ -5,8 +5,11 @@ namespace Communication
 	[Serializable]
 	public class Message
 	{
-		
-		
+		/// <summary>
+		/// Type of message (normal message or error)
+		/// </summary>
+		public MessageType Type { get; set; }
+
 		/// <summary>
 		/// Content of the message
 		/// </summary>
