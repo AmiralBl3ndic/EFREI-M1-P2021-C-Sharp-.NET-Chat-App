@@ -44,9 +44,13 @@ namespace ChatAppServer
 			{
 				try
 				{
+					// Wait to receive command from client
 					var command = Net.ReceiveCommand(_tcpClient.GetStream());
-					Console.WriteLine($"Received command from client: {(command != null ? command.ToString() : "")}");
+					if (command == null) continue;  // Perform only if command is not null
 					
+					Console.WriteLine($"Received command from client: {command}");
+					
+					// Initialize message
 					var response = new Message();
 
 					switch (command.Name)
