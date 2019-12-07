@@ -60,6 +60,7 @@ namespace ChatAppServer
 							break;
 						
 						case "register":
+							HandleRegisterCommand(command, response);
 							break;
 						
 						default:

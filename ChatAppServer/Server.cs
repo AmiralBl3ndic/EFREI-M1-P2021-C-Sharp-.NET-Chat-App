@@ -48,7 +48,7 @@ namespace ChatAppServer
 				// Wait for a new client connection
 				TcpClient client = listener.AcceptTcpClient();
 				
-				Console.WriteLine($"New client connection established: @{client}");
+				Console.WriteLine("New client connected");
 				
 				// Start a new Thread to handle interactions with the client without blocking the main thread
 				new Thread(new ClientHandler(client).Payload).Start();
