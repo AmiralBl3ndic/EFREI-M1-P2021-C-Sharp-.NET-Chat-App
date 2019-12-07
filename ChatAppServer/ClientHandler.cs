@@ -59,6 +59,10 @@ namespace ChatAppServer
 							HandleRegisterCommand(command, response);
 							break;
 						
+						case "logout":
+							HandleLogoutCommand(response);
+							break;
+
 						default:
 							Console.WriteLine($"Unable to handle command: {command}");
 							response.Type = MessageType.Error;

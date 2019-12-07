@@ -18,11 +18,11 @@ namespace ChatAppServer
 			if (_user == null)
 			{
 				response.Type = MessageType.Error;
-				response.Content = "Wrong credentials";
+				response.Content = "Wrong credentials.";
 			}
 			else
 			{
-				response.Content = $"Logged in as {_user.Username}";
+				response.Content = $"Logged in as {_user.Username}.";
 			}
 		}
 
@@ -37,7 +37,7 @@ namespace ChatAppServer
 			if (_user != null)
 			{
 				response.Type = MessageType.Error;
-				response.Content = "Cannot create accounts while logged in";
+				response.Content = "Cannot create accounts while logged in.";
 				return;
 			}
 			
@@ -47,12 +47,29 @@ namespace ChatAppServer
 			if (_user == null)
 			{
 				response.Type = MessageType.Error;
-				response.Content = "Credentials already in use";
+				response.Content = "Credentials already in use.";
 			}
 			else
 			{
-				response.Content = $"Account created, you are now logged in as {_user.Username}";
+				response.Content = $"Account created, you are now logged in as {_user.Username}.";
 			}
+		}
+
+		/// <summary>
+		/// Handle the "logout" command
+		/// </summary>
+		/// <param name="response">Message object to send to the user</param>
+		private void HandleLogoutCommand(Message response)
+		{
+			if (_user == null)
+			{
+				response.Type = MessageType.Error;
+				response.Content = "Cannot log out: you are not logged in.";
+				return;
+			}
+
+			_user = null;
+			response.Content = "Logged out.";
 		}
 	}
 }
