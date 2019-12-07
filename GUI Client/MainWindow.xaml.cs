@@ -19,7 +19,7 @@ namespace GUI_Client
 			InitializeComponent();
 			DataContext = this;
 			
-			_tcpClient = new TcpClient(FindResource("ServerIp").ToString(), Int32.Parse(FindResource("ServerPort").ToString()));
+			_tcpClient = new TcpClient(FindResource("ServerIp").ToString(), int.Parse(FindResource("ServerPort").ToString()));
 
 
 			var serverListenerThread = new Thread(ListenToServer);
