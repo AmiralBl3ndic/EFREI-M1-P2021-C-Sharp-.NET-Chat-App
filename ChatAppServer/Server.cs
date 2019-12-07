@@ -28,7 +28,7 @@ namespace ChatAppServer
 		public void Start(int port)
 		{
 			_port = port;
-			this.Start();
+			Start();
 		}
 
 		/// <summary>
