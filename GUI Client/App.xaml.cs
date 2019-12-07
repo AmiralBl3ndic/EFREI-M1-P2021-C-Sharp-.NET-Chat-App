@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ChatApp_GUI
+namespace GUI_Client
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<RootNamespace>ChatApp_GUI</RootNamespace>
+		<RootNamespace>GUI_Client</RootNamespace>
 		<UseWPF>true</UseWPF>
 	</PropertyGroup>
 

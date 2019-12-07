@@ -8,6 +8,7 @@ namespace ChatAppClient
 {
 	public class Client : TcpClient
 	{
+		private object _consoleAccess = new object();
 		
 		public Client(string hostname, int port) : base(hostname, port)
 		{
@@ -33,7 +34,12 @@ namespace ChatAppClient
 
 				while (!commandSubmitted)
 				{
-					var key = Console.ReadKey(true);
+					ConsoleKeyInfo key;
+					lock (_consoleAccess)
+					{
+						key = Console.ReadKey(false);
+					}
+
 					if (key.Key == ConsoleKey.Enter)
 					{
 						commandSubmitted = true;
@@ -45,7 +51,16 @@ namespace ChatAppClient
 				}
 				
 				var command = Command.Prepare(inputBuilder.ToString());
-        Net.SendCommand(GetStream(), command);
+				inputBuilder.Clear();
+
+				// Do not send commands which are known to contain an error
+				if (command.Error != null)
+				{
+					Console.WriteLine(command);
+					continue;
+				}
+				
+				Net.SendCommand(GetStream(), command);
 			}
 		}
 
@@ -62,7 +77,7 @@ namespace ChatAppClient
         Console.WriteLine("Hello");
         Console.SetCursorPosition(previousLeft, previousTop);
         
-        Thread.Sleep(1000);
+        Thread.Sleep(100);
 			}
 		}
 	}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Sockets;
 using ChatAppServer.Models;
 using Communication;
@@ -41,8 +42,16 @@ namespace ChatAppServer
 			// Loop forever (do not lose connection with client)
 			while (true)
 			{
-				var command = Net.ReceiveCommand(_tcpClient.GetStream());
-				Console.WriteLine($"Received command from client: {(command != null ? command.ToString() : "")}");
+				try
+				{
+					var command = Net.ReceiveCommand(_tcpClient.GetStream());
+					Console.WriteLine($"Received command from client: {(command != null ? command.ToString() : "")}");
+				}
+				catch (IOException)
+				{
+					Console.WriteLine("Client disconnected");
+					return;	
+				}
 			}
 		}
 	}

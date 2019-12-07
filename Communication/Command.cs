@@ -19,7 +19,7 @@ namespace Communication
 			{"join", 1},          // join {topicName}
 			{"leave", 1},         // leave {topicName}
 			{"say", 2},           // say {topicName} {messageContent}
-			{"mp", 2},            // mp {userName} {messageContent}
+			{"dm", 2},            // dm {userName} {messageContent}
 			{"logout", 0}         // logout
 		};
 
