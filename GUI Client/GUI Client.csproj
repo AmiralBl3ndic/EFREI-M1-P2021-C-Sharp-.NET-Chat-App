@@ -11,4 +11,10 @@
 	  <ProjectReference Include="..\Communication\Communication.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="MainWindowServerListener.cs">
+	    <DependentUpon>MainWindow.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
 </Project>

@@ -29,8 +29,8 @@
 		
 		<Border Background="GhostWhite" BorderBrush="Black" BorderThickness="1">
 			<ScrollViewer>
-				<StackPanel Margin="10,0,10,0">
-        	<TextBlock Foreground="Red" TextWrapping="Wrap">Lorem ipsum dolor sit amet.</TextBlock>
+				<StackPanel Margin="10,0,10,0" Name="MessagesPanel">
+        	<!-- Contains all the messages -->
 				</StackPanel>
 			</ScrollViewer>
 		</Border>
