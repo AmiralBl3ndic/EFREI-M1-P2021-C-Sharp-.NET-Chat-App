@@ -18,10 +18,11 @@ namespace GUI_Client
 		{
 			InitializeComponent();
 			DataContext = this;
+
+			UserInputField.Focus();
 			
 			_tcpClient = new TcpClient(FindResource("ServerIp").ToString(), int.Parse(FindResource("ServerPort").ToString()));
-
-
+			
 			var serverListenerThread = new Thread(ListenToServer);
 			serverListenerThread.SetApartmentState(ApartmentState.STA);
 			serverListenerThread.IsBackground = true;
