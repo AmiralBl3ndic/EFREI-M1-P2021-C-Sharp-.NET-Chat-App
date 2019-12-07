@@ -14,7 +14,7 @@ namespace ChatAppServer
 		/// <summary>
 		/// TCP client the client uses to communicate
 		/// </summary>
-		private TcpClient _tcpClient;
+		private readonly TcpClient _tcpClient;
 
 		/// <summary>
 		/// User object representing the User database record of the current client 
@@ -46,6 +46,20 @@ namespace ChatAppServer
 				{
 					var command = Net.ReceiveCommand(_tcpClient.GetStream());
 					Console.WriteLine($"Received command from client: {(command != null ? command.ToString() : "")}");
+					
+					var response = new Message();
+
+					switch (command.Name)
+					{
+						case "login":
+							break;
+						
+						default:
+							response.Type = MessageType.Error;
+							response.Content = "Unknown operation";
+							Net.SendMessage(_tcpClient.GetStream(), response);
+							break;
+					}
 				}
 				catch (IOException)  // Handle "losing" clients
 				{
