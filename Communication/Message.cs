@@ -14,8 +14,12 @@ namespace Communication
 		/// Content of the message
 		/// </summary>
 		public string Content { get; set; }
-		
-		public Message() {}
+
+		public Message()
+		{
+			Type = MessageType.Message;
+			Content = "";
+		}
 		
 		public Message(string content)
 		{
