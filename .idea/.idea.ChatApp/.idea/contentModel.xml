@@ -62,6 +62,7 @@
         <e p="GUI Client.csproj" t="IncludeRecursive" />
         <e p="MainWindow.xaml" t="Include" />
         <e p="MainWindow.xaml.cs" t="Include" />
+        <e p="MainWindowEventHandlers.cs" t="Include" />
         <e p="MainWindowServerListener.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

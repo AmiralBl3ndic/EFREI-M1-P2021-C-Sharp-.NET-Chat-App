@@ -10,10 +10,7 @@ namespace GUI_Client
 	{
 		private void ListenToServer()
 		{
-			Console.Write("Begin...");
-			
-			Console.WriteLine("end");
-
+			// Display a "connected to server" message
 			Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
 			{
 				var connectedMessage = new TextBlock() {Text = $"Connected to server {(FindResource("ServerIp"))}:{(FindResource("ServerPort"))}"};
@@ -21,8 +18,10 @@ namespace GUI_Client
 				MessagesPanel.Children.Add(connectedMessage);
 			}));
 			
+			// Listen to messages from server
 			while (true)
 			{
+				// Sample message
 				Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
 				{
 					var sampleMessage = new TextBlock() {Text = "I am a sample message"};
