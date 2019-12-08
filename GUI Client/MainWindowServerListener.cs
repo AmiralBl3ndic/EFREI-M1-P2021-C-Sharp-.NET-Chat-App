@@ -34,6 +34,12 @@ namespace GUI_Client
 						Foreground = message.Type == MessageType.Error ? Brushes.Red : Brushes.Black,
 						FontWeight = message.Type == MessageType.Error ? FontWeights.Bold : FontWeights.Regular
 					};
+
+					if (message.Type == MessageType.Info)
+					{
+						messageBlock.Foreground = Brushes.Blue;
+						messageBlock.FontStyle = FontStyles.Italic;
+					}
 					
 					MessagesPanel.Children.Add(messageBlock);
 				}));

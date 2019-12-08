@@ -24,7 +24,8 @@ namespace ChatAppServer
 			{
 				// Add client to list of connected clients
 				ConnectedClients.Add(_user, _tcpClient);
-				
+
+				response.Type = MessageType.Info;
 				response.Content = $"Logged in as {_user.Username}.";
 			}
 		}
@@ -56,7 +57,8 @@ namespace ChatAppServer
 			{
 				// Add client to list of connected clients
 				ConnectedClients.Add(_user, _tcpClient);
-				
+
+				response.Type = MessageType.Info;
 				response.Content = $"Account created, you are now logged in as {_user.Username}.";
 			}
 		}
@@ -78,6 +80,7 @@ namespace ChatAppServer
 			ConnectedClients.Remove(_user);
 			
 			_user = null;
+			response.Type = MessageType.Info;
 			response.Content = "Logged out.";
 		}
 	}
