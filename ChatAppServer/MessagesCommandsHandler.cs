@@ -197,8 +197,25 @@ namespace ChatAppServer
 				Net.SendMessage(_tcpClient.GetStream(), response);
 				return;
 			}
+
+			// Store private message in database
+			var privateMessageRecord = new PrivateMessageRecord
+			{
+				Receiver = receiverUsername,
+				Sender = _user.Username,
+				Content = messageContent
+			};
+			MessageRecordService.CreatePrivateMessage(privateMessageRecord);
+
+			// Send message feedback
+			response.Type = MessageType.Message;
+			response.Content = $"[To: {receiverUsername}] - {messageContent}";
+			Net.SendMessage(_tcpClient.GetStream(), response);
 			
-			// TODO: store private message in database (receiver exists but is not connected)
+			// Send information that receiver is not connected and will read the message when connecting
+			response.Type = MessageType.Info;
+			response.Content = $"User {receiverUsername} is not connected. The message will be delivered upon next connection";
+			Net.SendMessage(_tcpClient.GetStream(), response);
 		}
 	}
 }

@@ -15,7 +15,7 @@ namespace ChatAppServer.Services
 		/// </summary>
 		/// <param name="user">User to get the list of messages for</param>
 		/// <returns>List of unread messages for passed user</returns>
-		public List<PrivateMessageRecord> GetPrivateMessages(User user)
+		public static List<PrivateMessageRecord> GetPrivateMessages(User user)
 		{
 			return PrivateMessagesCollection
 				.Find(record => record.Receiver == user.Username)
@@ -26,7 +26,7 @@ namespace ChatAppServer.Services
 		/// Clear the private messages of a given user
 		/// </summary>
 		/// <param name="user">User to clear the private messages of</param>
-		public void ClearPrivateMessages(User user)
+		public static void ClearPrivateMessages(User user)
 		{
 			PrivateMessagesCollection.DeleteMany(record => record.Receiver == user.Username);
 		}
@@ -36,7 +36,7 @@ namespace ChatAppServer.Services
 		/// Create a private message record
 		/// </summary>
 		/// <param name="privateMessageRecord">Record to insert in the database</param>
-		public void CreatePrivateMessage(PrivateMessageRecord privateMessageRecord)
+		public static void CreatePrivateMessage(PrivateMessageRecord privateMessageRecord)
 		{
 			PrivateMessagesCollection.InsertOne(privateMessageRecord);
 		}

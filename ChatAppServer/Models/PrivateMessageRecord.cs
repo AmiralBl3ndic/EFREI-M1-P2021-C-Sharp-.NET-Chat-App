@@ -14,5 +14,8 @@ namespace ChatAppServer.Models
 		
 		[BsonElement("ReceiverUsername")]
 		public string Receiver { get; set; }
+		
+		[BsonElement("Content")]
+		public string Content { get; set; }
 	}
 }
