@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace ChatAppServer.Models
@@ -15,7 +16,14 @@ namespace ChatAppServer.Models
 		public string Password { get; set; }
 		
 		[BsonElement("Topics")]
-		public string[] Topics { get; set; }
+		public List<string> Topics { get; set; }
+
+		public User()
+		{
+			Username = null;
+			Password = null;
+			Topics = new List<string>();
+		}
 
 		public void HashPassword()
 		{
