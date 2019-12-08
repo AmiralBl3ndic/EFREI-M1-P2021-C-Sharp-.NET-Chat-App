@@ -37,8 +37,9 @@ namespace ChatAppServer.Services
 				return null;
 			}
 			
-			var newUser = new User{Username = username, Password = password};
+			var newUser = new User() {Username = username, Password = password};
 			newUser.HashPassword();
+			newUser.Topics.Add("general");
 
 			return UserService.Create(newUser);
 		}
