@@ -77,6 +77,12 @@ namespace ChatAppServer
 				}
 				catch (IOException)  // Handle "losing" clients
 				{
+					// If user was authenticated, disconnect him
+					if (_user != null)
+					{
+						ConnectedClients.Remove(_user);
+					}
+					
 					Console.WriteLine("Client disconnected");
 					return;	
 				}
