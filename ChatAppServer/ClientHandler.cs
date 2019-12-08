@@ -53,6 +53,7 @@ namespace ChatAppServer
 					// Initialize message
 					var response = new Message();
 
+					// Dispatch the command to the right handler
 					switch (command.Name)
 					{
 						case "login":
@@ -70,6 +71,10 @@ namespace ChatAppServer
 						case "say":
 							HandleSayCommand(command, response);
 							continue;  // No need to go further
+						
+						case "create-topic":
+							HandleCreateTopicCommand(command, response);
+							break;
 
 						default:
 							Console.WriteLine($"Unable to handle command: {command}");
