@@ -7,6 +7,6 @@
 		public static readonly string MongoUsersCollectionName = "Users";
 		public static readonly string MongoTopicsCollectionName = "Topics";
 		public static readonly string MongoMessagesCollectionName = "Topics.Messages";
-		public static readonly string MongoPrivateMessagesCollectionName = "Private.Messages";
+		public static readonly string MongoPrivateMessagesCollectionName = "PrivateMessages";
 	}
 }

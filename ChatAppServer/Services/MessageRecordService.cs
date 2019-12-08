@@ -5,8 +5,8 @@ namespace ChatAppServer.Services
 {
 	public class MessageRecordService
 	{
-		public IMongoCollection<TopicMessageRecord> TopicMessagesCollection { get; set; }
+		public static IMongoCollection<TopicMessageRecord> TopicMessagesCollection { get; set; }
 		
-		public IMongoCollection<PrivateMessageRecord> PrivateMessagesCollection { get; set; }
+		public static IMongoCollection<PrivateMessageRecord> PrivateMessagesCollection { get; set; }
 	}
 }

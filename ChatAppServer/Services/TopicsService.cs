@@ -5,7 +5,7 @@ namespace ChatAppServer.Services
 {
 	public class TopicsService
 	{
-		public IMongoCollection<Topic> TopicsCollection { get; set; }
+		public static IMongoCollection<Topic> TopicsCollection { get; set; }
 		
 		/// <summary>
 		/// Check if a topic exists with the passed in name

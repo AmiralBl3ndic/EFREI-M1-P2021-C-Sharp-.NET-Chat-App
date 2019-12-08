@@ -14,6 +14,9 @@ namespace ChatAppServer
 			
 			// Inject dependencies to services
 			UserService.UsersCollection = db.GetCollection<User>(Settings.MongoUsersCollectionName);
+			MessageRecordService.TopicMessagesCollection = db.GetCollection<TopicMessageRecord>(Settings.MongoMessagesCollectionName);
+			MessageRecordService.PrivateMessagesCollection = db.GetCollection<PrivateMessageRecord>(Settings.MongoPrivateMessagesCollectionName);
+			TopicsService.TopicsCollection = db.GetCollection<Topic>(Settings.MongoTopicsCollectionName);
 			
 			// Instantiate and start server
 			var server = new Server(4321);
