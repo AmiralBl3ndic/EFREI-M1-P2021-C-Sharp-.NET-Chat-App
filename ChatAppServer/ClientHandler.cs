@@ -72,6 +72,10 @@ namespace ChatAppServer
 							HandleSayCommand(command, response);
 							continue;  // No need to go further
 						
+						case "list-topics":
+							HandleListTopicsCommand(command, response);
+							break;
+						
 						case "create-topic":
 							HandleCreateTopicCommand(command, response);
 							break;

@@ -52,6 +52,7 @@ namespace ChatAppServer
 			response.Content = sb.ToString();
 			Net.SendMessage(_tcpClient.GetStream(), response);
 			
+			// Clear the list of unread private messages
 			MessageRecordService.ClearPrivateMessages(_user);
 		}
 

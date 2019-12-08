@@ -1,4 +1,5 @@
-﻿using ChatAppServer.Models;
+﻿using System.Collections.Generic;
+using ChatAppServer.Models;
 using MongoDB.Driver;
 
 namespace ChatAppServer.Services
@@ -10,7 +11,7 @@ namespace ChatAppServer.Services
 		/// <summary>
 		/// Check if a topic exists with the passed in name
 		/// </summary>
-		/// <param name="topicName">Name of the topic to check existence of</param>
+		/// <param name="topic">Topic to check existence of</param>
 		/// <returns>Whether a topic with given name exists</returns>
 		public static bool Exists(Topic topic)
 		{
@@ -18,6 +19,15 @@ namespace ChatAppServer.Services
 			record = TopicsCollection.Find(item => item.Name == topic.Name).FirstOrDefault();
 				
 			return record != null;
+		}
+		
+		/// <summary>
+		/// Get the list of all the topics
+		/// </summary>
+		/// <returns>List of all the topics</returns>
+		public static List<Topic> GetAll()
+		{
+			return TopicsCollection.Find(record => true).ToList();
 		}
 
 

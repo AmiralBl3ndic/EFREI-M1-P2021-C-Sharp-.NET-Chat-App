@@ -1,4 +1,5 @@
-﻿using ChatAppServer.Models;
+﻿using System.Text;
+using ChatAppServer.Models;
 using ChatAppServer.Services;
 using Communication;
 
@@ -54,6 +55,26 @@ namespace ChatAppServer
 			}
 		}
 
+		/// <summary>
+		/// Handle the "list-topics" command
+		/// </summary>
+		/// <param name="command">Command to parse and execute</param>
+		/// <param name="response">Message object to send to the user</param>
+		private void HandleListTopicsCommand(Command command, Message response)
+		{
+			var sb = new StringBuilder();
+			var topics = TopicsService.GetAll();
+
+			sb.AppendLine("=== List of all the topics ===");
+			foreach (var topic in topics)
+			{
+				sb.AppendLine($"- {topic.Name} {(_user != null && _user.Topics.Contains(topic.Name) ? "(joined)" : "")}");
+			}
+
+			response.Type = MessageType.Message;
+			response.Content = sb.ToString();
+		}
+		
 		/// <summary>
 		/// Handle the "create-topic" command
 		/// </summary>
