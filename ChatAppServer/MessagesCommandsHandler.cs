@@ -1,4 +1,6 @@
-﻿using Communication;
+﻿using ChatAppServer.Models;
+using ChatAppServer.Services;
+using Communication;
 
 namespace ChatAppServer
 {
@@ -39,7 +41,33 @@ namespace ChatAppServer
 		/// <param name="response">Message object to send to the user</param>
 		private void HandleCreateTopicCommand(Command command, Message response)
 		{
+			// Check if user is logged in
+			if (_user == null)
+			{
+				response.Type = MessageType.Error;
+				response.Content = "You must be logged in to create topics";
+				return;
+			}
+
+			var topic = new Topic {Name = command.Arguments[0]};
+
+			// Check if topic already exists
+			if (TopicsService.Exists(topic))
+			{
+				response.Type = MessageType.Error;
+				response.Content = $"Topic {command.Arguments[0]} already exists, consider joining it.";
+				return;
+			}
+
+			// Actually create the topic
+			TopicsService.Create(topic);
 			
+			// Add the topic to the list of joined topics
+			_user.Topics.Add(topic.Name);
+			UserService.Update(_user.Id, _user);
+
+			response.Type = MessageType.Info;
+			response.Content = $"Topic {topic.Name} created and joined.";
 		}
 	}
 }

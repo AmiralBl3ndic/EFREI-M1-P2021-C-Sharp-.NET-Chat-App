@@ -12,7 +12,7 @@ namespace ChatAppServer.Services
 		/// </summary>
 		/// <param name="topicName">Name of the topic to check existence of</param>
 		/// <returns>Whether a topic with given name exists</returns>
-		public bool Exists(Topic topic)
+		public static bool Exists(Topic topic)
 		{
 			Topic record = null;
 			record = TopicsCollection.Find(item => item.Name == topic.Name).FirstOrDefault();
@@ -26,7 +26,7 @@ namespace ChatAppServer.Services
 		/// </summary>
 		/// <param name="topic">Topic to create record of</param>
 		/// <returns>Created topic, null if not created</returns>
-		public Topic Create(Topic topic)
+		public static Topic Create(Topic topic)
 		{
 			if (topic == null || Exists(topic))
 			{
@@ -37,6 +37,7 @@ namespace ChatAppServer.Services
 			return topic;
 		}
 
+		
 		/// <summary>
 		/// Delete a Topic record in database
 		/// </summary>
