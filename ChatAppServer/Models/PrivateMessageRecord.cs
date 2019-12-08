@@ -1,11 +1,12 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace ChatAppServer.Models
 {
 	public class PrivateMessageRecord
 	{
-		[BsonId]
+		[BsonId] [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
 		public ObjectId Id { get; set; }
 
 		[BsonElement("SenderUsername")]

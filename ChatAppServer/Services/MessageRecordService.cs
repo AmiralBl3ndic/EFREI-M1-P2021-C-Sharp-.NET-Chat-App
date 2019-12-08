@@ -9,13 +9,12 @@ namespace ChatAppServer.Services
 		public static IMongoCollection<TopicMessageRecord> TopicMessagesCollection { get; set; }
 		
 		public static IMongoCollection<PrivateMessageRecord> PrivateMessagesCollection { get; set; }
-
-
+		
 		public List<PrivateMessageRecord> GetPrivateMessages(User user)
 		{
 			return PrivateMessagesCollection
-							.Find(record => record.Receiver == user.Username)
-							.ToList();
+				.Find(record => record.Receiver == user.Username)
+				.ToList();
 		}
 	}
 }
