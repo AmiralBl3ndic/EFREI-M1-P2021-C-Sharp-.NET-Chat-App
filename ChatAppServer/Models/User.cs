@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -17,6 +18,9 @@ namespace ChatAppServer.Models
 		
 		[BsonElement("Topics")]
 		public List<string> Topics { get; set; }
+		
+		[BsonElement("LastSeenAt")]
+		public DateTime LastSeenAt { get; set; }
 
 		public User()
 		{
