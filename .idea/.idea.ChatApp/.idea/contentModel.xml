@@ -5,19 +5,6 @@
     <e p="C:\Users\camil\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_ChatApp.1907406912.00" t="ExcludeRecursive" />
     <e p="C:\Users\camil\Code\C#\ChatApp" t="IncludeFlat">
       <e p="ChatApp.sln" t="IncludeFlat" />
-      <e p="ChatAppClient" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="ChatAppClient.csproj" t="IncludeRecursive" />
-        <e p="Client.cs" t="Include" />
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp3.1" t="Include">
-              <e p="ChatAppClient.AssemblyInfo.cs" t="Include" />
-            </e>
-          </e>
-        </e>
-        <e p="Program.cs" t="Include" />
-      </e>
       <e p="ChatAppServer" t="IncludeRecursive">
         <e p="AuthenticationCommandsHandlers.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
