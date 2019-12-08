@@ -3,20 +3,19 @@
   <component name="ContentModelStore">
     <e p="C:\Users\camil\.Rider2019.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\camil\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Communication.1668449095.00" t="ExcludeRecursive" />
-    <e p="C:\Users\camil\Code\C#\ChatApp\Communication" t="IncludeFlat">
-      <e p="Communication" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="Class1.cs" t="Include" />
-        <e p="Communication.csproj" t="IncludeRecursive" />
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp3.1" t="Include">
-              <e p="Communication.AssemblyInfo.cs" t="Include" />
-            </e>
+    <e p="C:\Users\camil\Code\C#\ChatApp\Communication" t="IncludeRecursive">
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="Communication.csproj" t="IncludeRecursive" />
+      <e p="Communication.sln" t="IncludeFlat" />
+      <e p="Message.cs" t="Include" />
+      <e p="Net.cs" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.1" t="Include">
+            <e p="Communication.AssemblyInfo.cs" t="Include" />
           </e>
         </e>
       </e>
-      <e p="Communication.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
   </component>

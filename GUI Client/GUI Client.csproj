@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>GUI_Client</RootNamespace>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Communication\Communication.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="MainWindowServerListener.cs">
+	    <DependentUpon>MainWindow.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MainWindowEventHandlers.cs">
+	    <DependentUpon>MainWindow.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+﻿<Application x:Class="GUI_Client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:GUI_Client"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+	    <sys:String x:Key="AppName">ChatApp v0.0.0</sys:String>
+	    
+	    <sys:String x:Key="ServerIp">127.0.0.1</sys:String>
+	    <sys:Int32 x:Key="ServerPort">4321</sys:Int32>
+    </Application.Resources>
+</Application>
