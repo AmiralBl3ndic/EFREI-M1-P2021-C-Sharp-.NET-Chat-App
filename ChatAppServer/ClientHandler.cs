@@ -79,6 +79,10 @@ namespace ChatAppServer
 						case "join":
 							HandleJoinCommand(command, response);
 							break;
+						
+						case "leave":
+							HandleLeaveCommand(command, response);
+							break;
 
 						default:
 							Console.WriteLine($"Unable to handle command: {command}");
