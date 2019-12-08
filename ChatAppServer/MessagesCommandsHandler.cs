@@ -17,11 +17,31 @@ namespace ChatAppServer
 			{
 				response.Type = MessageType.Error;
 				response.Content = "You must be logged in to say something";
+				Net.SendMessage(_tcpClient.GetStream(), response);
 				return;
 			}
 			
-			// Build message
 			var topic = command.Arguments[0];
+
+			// Check if topic exists
+			if (!TopicsService.Exists(new Topic {Name = topic}))
+			{
+				response.Type = MessageType.Error;
+				response.Content = $"Topic {topic} does not exist, you can create it with: create-topic {topic}";
+				Net.SendMessage(_tcpClient.GetStream(), response);
+				return;
+			}
+			
+			// Check if user should be able to talk in the topic
+			if (!_user.Topics.Contains(topic))
+			{
+				response.Type = MessageType.Error;
+				response.Content = $"You cannot send messages in {topic} since you haven't joined it, you can join it with: join {topic}";
+				Net.SendMessage(_tcpClient.GetStream(), response);
+				return;
+			}
+
+			// Build message
 			response.Content = $"[{_user.Username}@{topic}] - {command.Arguments[1]}";
 
 			// Explore list of all connected clients 
