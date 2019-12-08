@@ -26,6 +26,7 @@
         <e p="MessagesCommandsHandler.cs" t="Include" />
         <e p="Models" t="Include">
           <e p="Topic.cs" t="Include" />
+          <e p="TopicMessageRecord.cs" t="Include" />
           <e p="User.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
