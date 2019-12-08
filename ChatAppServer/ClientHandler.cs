@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using ChatAppServer.Models;
+using ChatAppServer.Services;
 using Communication;
 
 namespace ChatAppServer
@@ -85,6 +86,9 @@ namespace ChatAppServer
 					if (_user != null)
 					{
 						ConnectedClients.Remove(_user);
+
+						_user.LastSeenAt = DateTime.UtcNow;
+						UserService.Update(_user.Id, _user);
 					}
 					
 					Console.WriteLine("Client disconnected");

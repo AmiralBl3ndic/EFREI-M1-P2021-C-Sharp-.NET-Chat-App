@@ -1,4 +1,5 @@
-﻿using ChatAppServer.Services;
+﻿using System;
+using ChatAppServer.Services;
 using Communication;
 
 namespace ChatAppServer
@@ -78,6 +79,9 @@ namespace ChatAppServer
 
 			// Remove user from list of connected clients
 			ConnectedClients.Remove(_user);
+
+			_user.LastSeenAt = DateTime.UtcNow;
+			UserService.Update(_user.Id, _user);
 			
 			_user = null;
 			response.Type = MessageType.Info;
