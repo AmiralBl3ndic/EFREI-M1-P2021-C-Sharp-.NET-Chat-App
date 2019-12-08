@@ -65,6 +65,10 @@ namespace ChatAppServer
 						case "logout":
 							HandleLogoutCommand(response);
 							break;
+						
+						case "say":
+							HandleSayCommand(command, response);
+							continue;  // No need to go further
 
 						default:
 							Console.WriteLine($"Unable to handle command: {command}");
