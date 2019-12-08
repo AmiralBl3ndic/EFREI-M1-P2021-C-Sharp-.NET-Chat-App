@@ -151,5 +151,54 @@ namespace ChatAppServer
 			response.Type = MessageType.Info;
 			response.Content = $"Left topic {topic.Name}";
 		}
+		
+		/// <summary>
+		/// Handle the "leave" command
+		/// </summary>
+		/// <param name="command">Command to parse and execute</param>
+		/// <param name="response">Message object to send to the user</param>
+		private void HandleDmCommand(Command command, Message response)
+		{
+			if (_user == null)
+			{
+				response.Type = MessageType.Error;
+				response.Content = "You must be logged in to send private messages";
+				return;
+			}
+
+			var receiverUsername = command.Arguments[0];
+			var messageContent = command.Arguments[1];
+
+
+			// Send message to 
+			foreach (var (connectedUser, tcpClient) in ConnectedClients)
+			{
+				if (connectedUser.Username != receiverUsername) continue;
+				
+				response.Type = MessageType.Message;
+					
+				// Build and send message to receiver
+				response.Content = $"[From: {_user.Username}] - {messageContent}";
+				Net.SendMessage(tcpClient.GetStream(), response);
+					
+				// Build and send message feedback to sender
+				response.Content = $"[To: {receiverUsername}] - {messageContent}";
+				Net.SendMessage(_tcpClient.GetStream(), response);
+				return;
+			}
+
+			// From this point, the message has not been sent to the receiver
+			
+			// Check if receiver exists
+			if (UserService.GetByUsername(receiverUsername) == null)
+			{
+				response.Type = MessageType.Error;
+				response.Content = $"No user found with username \"{receiverUsername}\"";
+				Net.SendMessage(_tcpClient.GetStream(), response);
+				return;
+			}
+			
+			// TODO: store private message in database (receiver exists but is not connected)
+		}
 	}
 }
