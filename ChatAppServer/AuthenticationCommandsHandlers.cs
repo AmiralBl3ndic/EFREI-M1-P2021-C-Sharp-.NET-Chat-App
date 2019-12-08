@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using ChatAppServer.Models;
 using ChatAppServer.Services;
 using Communication;
 
@@ -20,15 +23,36 @@ namespace ChatAppServer
 			{
 				response.Type = MessageType.Error;
 				response.Content = "Wrong credentials.";
+				Net.SendMessage(_tcpClient.GetStream(), response);
+				return;
 			}
-			else
-			{
-				// Add client to list of connected clients
-				ConnectedClients.Add(_user, _tcpClient);
+			
+			// Add client to list of connected clients
+			ConnectedClients.Add(_user, _tcpClient);
 
-				response.Type = MessageType.Info;
-				response.Content = $"Logged in as {_user.Username}.";
+			response.Type = MessageType.Info;
+			response.Content = $"Logged in as {_user.Username}.";
+			Net.SendMessage(_tcpClient.GetStream(), response);
+			
+			// Gather unread private messages
+			List<PrivateMessageRecord> privateMessages = MessageRecordService.GetPrivateMessages(_user);
+
+			//if (privateMessages.Count == 0) return;
+			
+			// Build the private messages block
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine($"=== You received {privateMessages.Count} private messages during your absence ===");
+			foreach (var message in privateMessages)
+			{
+				sb.AppendLine($"[From: {message.Sender}] - {message.Content}");
 			}
+			sb.Append("=========================================");
+
+			response.Type = MessageType.Message;
+			response.Content = sb.ToString();
+			Net.SendMessage(_tcpClient.GetStream(), response);
+			
+			MessageRecordService.ClearPrivateMessages(_user);
 		}
 
 		/// <summary>

@@ -58,7 +58,7 @@ namespace ChatAppServer
 					{
 						case "login":
 							HandleLoginCommand(command, response);
-							break;
+							continue;
 						
 						case "register":
 							HandleRegisterCommand(command, response);
