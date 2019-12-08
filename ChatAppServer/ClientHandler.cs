@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using ChatAppServer.Models;
@@ -11,6 +12,8 @@ namespace ChatAppServer
 	/// </summary>
 	public partial class ClientHandler
 	{
+		private static Dictionary<User, TcpClient> ConnectedClients = new Dictionary<User, TcpClient>();
+		
 		/// <summary>
 		/// TCP client the client uses to communicate
 		/// </summary>
