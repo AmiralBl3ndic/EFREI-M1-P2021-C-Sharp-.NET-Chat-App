@@ -75,6 +75,10 @@ namespace ChatAppServer
 						case "create-topic":
 							HandleCreateTopicCommand(command, response);
 							break;
+						
+						case "join":
+							HandleJoinCommand(command, response);
+							break;
 
 						default:
 							Console.WriteLine($"Unable to handle command: {command}");

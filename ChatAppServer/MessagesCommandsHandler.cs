@@ -89,5 +89,36 @@ namespace ChatAppServer
 			response.Type = MessageType.Info;
 			response.Content = $"Topic {topic.Name} created and joined.";
 		}
+
+		/// <summary>
+		/// Handle the "join" command
+		/// </summary>
+		/// <param name="command">Command to parse and execute</param>
+		/// <param name="response">Message object to send to the user</param>
+		private void HandleJoinCommand(Command command, Message response)
+		{
+			if (_user == null)
+			{
+				response.Type = MessageType.Error;
+				response.Content = "You must be logged in to join a topic";
+				return;
+			}
+
+			var topic = new Topic {Name = command.Arguments[0]};
+
+			if (!TopicsService.Exists(topic))
+			{
+				response.Type = MessageType.Error;
+				response.Content = $"Topic {topic.Name} does not exist, you can create it with: create-topic {topic.Name}";
+				return;
+			}
+			
+			// Update user's list of topics
+			_user.Topics.Add(topic.Name);
+			UserService.Update(_user.Id, _user);
+
+			response.Type = MessageType.Info;
+			response.Content = $"Joined topic {topic.Name}";
+		}
 	}
 }
