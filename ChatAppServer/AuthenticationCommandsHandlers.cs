@@ -17,16 +17,31 @@ namespace ChatAppServer
 		private void HandleLoginCommand(Command command, Message response)
 		{
 			// Try authentication
-			_user = AuthenticationService.AuthenticateUser(command.Arguments[0], command.Arguments[1]);
-							
-			if (_user == null)
+			var authUser = AuthenticationService.AuthenticateUser(command.Arguments[0], command.Arguments[1]);
+			
+			// Check if authentication succeeded
+			if (authUser == null)
 			{
 				response.Type = MessageType.Error;
 				response.Content = "Wrong credentials.";
 				Net.SendMessage(_tcpClient.GetStream(), response);
 				return;
 			}
+
+			// Check if a client is already connected to this account
+			foreach (var user in ConnectedClients.Keys)
+			{
+				if (user.Username == authUser.Username)
+				{
+					response.Type = MessageType.Error;
+					response.Content = "Another client is already connected to this account";
+					Net.SendMessage(_tcpClient.GetStream(), response);
+					return;
+				}
+			}
 			
+			_user = authUser;
+
 			// Add client to list of connected clients
 			ConnectedClients.Add(_user, _tcpClient);
 
