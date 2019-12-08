@@ -70,6 +70,7 @@ namespace ChatAppServer
 			{
 				sb.AppendLine($"- {topic.Name} {(_user != null && _user.Topics.Contains(topic.Name) ? "(joined)" : "")}");
 			}
+			sb.Append("====================");
 
 			response.Type = MessageType.Message;
 			response.Content = sb.ToString();
@@ -162,6 +163,13 @@ namespace ChatAppServer
 			{
 				response.Type = MessageType.Error;
 				response.Content = $"Topic {topic.Name} does not exist, you can create it with: create-topic {topic.Name}";
+				return;
+			}
+
+			if (!_user.Topics.Contains(topic.Name))
+			{
+				response.Type = MessageType.Error;
+				response.Content = $"You haven't joined topic {topic.Name}";
 				return;
 			}
 			
