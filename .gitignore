@@ -4,3 +4,5 @@ obj/
 /.vs/ChatApp/DesignTimeBuild/.dtbcache
 /.vs/ChatApp/v15/.suo
 /.vs/ChatApp/v15/Server/sqlite3/db.lock
+**/.vs
+**/.idea
